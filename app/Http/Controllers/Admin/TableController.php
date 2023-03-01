@@ -41,38 +41,54 @@ class TableController extends Controller
         ]);
 
         return redirect()->route('admin.tables.index');
-        return redirect()->route('admin.categories.index');
+        // return redirect()->route('admin.categories.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id): Response
-    {
-        //
-    }
+    // public function show(string $id): Response
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): Response
+    public function edit(Table $table): Response
     {
-        //
+        return response()->view('admin.tables.edit', compact('table'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, Table $table): RedirectResponse
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'guest_number' => 'required',
+            'location' => 'required',
+            'status' => 'required',
+        ]);
+
+        $table->update([
+            'name' => $request->name,
+            'guest_number' => $request->guest_number,
+            'location' => $request->location,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('admin.tables.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(Table $table): RedirectResponse
     {
-        //
+        $table->delete();
+
+        return redirect()->route('admin.tables.index');
     }
 }

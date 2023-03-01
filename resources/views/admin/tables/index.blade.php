@@ -45,6 +45,16 @@
                             <td class="px-6 py-4">
                                 {{ $table->status }}
                             </td>
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <div class="flex space-x-2">
+                                    <a href="{{ route('admin.tables.edit', $table->id) }}" class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-lg text-white">Edit</a>
+                                <form action="{{ route('admin.tables.destroy', $table->id) }}" method="POST" class=" px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white" onsubmit="return confirm('Are you sure!')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                </form>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
