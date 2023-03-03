@@ -15,63 +15,61 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Product name
+                        Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Color
+                        Email
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Category
+                        Contact
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Price
+                        Date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Guest Number
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Table Id
                     </th>
                 </tr>
                 </thead>
                 <tbody>
+                    @foreach ($reservations as $reservation)
+                        
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
+                        {{ $reservation->first_name }} {{ $reservation->last_name }}
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        {{ $reservation->email }}
                     </td>
                     <td class="px-6 py-4">
-                        Laptop
+                        {{ $reservation->tel_number }}
                     </td>
                     <td class="px-6 py-4">
-                        $2999
+                        {{ $reservation->res_date }}
                     </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td class="px-6 py-4">
+                        {{ $reservation->guest_number }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $reservation->table_id }}
+                    </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Microsoft Surface Pro
+                        <div class="flex space-x-2">
+                            <a href="{{ route('admin.reservations.edit', $reservation->id) }}" class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-lg text-white">Edit</a>
+                            <form action="{{ route('admin.reservations.destroy', $reservation->id) }}" method="POST" class=" px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white" onsubmit="return confirm('Are you sure!')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
                     </th>
-                    <td class="px-6 py-4">
-                        White
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop PC
-                    </td>
-                    <td class="px-6 py-4">
-                        $1999
-                    </td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Mouse 2
-                    </th>
-                    <td class="px-6 py-4">
-                        Black
-                    </td>
-                    <td class="px-6 py-4">
-                        Accessories
-                    </td>
-                    <td class="px-6 py-4">
-                        $99
-                    </td>
                 </tr>
                 </tbody>
+
+                @endforeach
                 </table>
             </div>
         </div>
