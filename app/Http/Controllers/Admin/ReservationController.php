@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReservationStoreRequest;
 use App\Models\Reservation;
+use App\Models\Table;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -24,24 +26,35 @@ class ReservationController extends Controller
      */
     public function create(): Response
     {
-        return response()->view('admin.reservations.create');
+        $tables = Table::all();
+        return response()->view('admin.reservations.create', compact('tables'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(ReservationStoreRequest $request): RedirectResponse
     {
-        //
+        $reservation = Reservation::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'tel_number' => $request->tel_number,
+            'res_date' => $request->res_date,
+            'guest_number' => $request->guest_number,
+            'table_id' => $request->table_id,
+        ]);
+
+        return redirect()->route('admin.reservations.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id): Response
-    {
-        //
-    }
+    // public function show(string $id): Response
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
