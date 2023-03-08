@@ -54,7 +54,7 @@
                         {{ $reservation->guest_number }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $reservation->table_id }}
+                        {{ $reservation->table->name }}
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <div class="flex space-x-2">
