@@ -21,6 +21,9 @@
                             <div class="mt-1">
                                 <input type="text" id="first_name" name="first_name" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2">
                             </div>
+                            @error('first_name')
+                                <div class=" text-sm text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         {{-- last name --}}
                         <div class="sm:col-span-6">
@@ -28,6 +31,9 @@
                             <div class="mt-1">
                                 <input type="text" id="last_name" name="last_name" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2">
                             </div>
+                            @error('last_name')
+                                <div class=" text-sm text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         {{-- email --}}
                         <div class="sm:col-span-6">
@@ -35,6 +41,9 @@
                             <div class="mt-1">
                                 <input type="email" id="email" name="email" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2">
                             </div>
+                            @error('email')
+                                <div class=" text-sm text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         {{-- tel number --}}
                         <div class="sm:col-span-6">
@@ -42,6 +51,9 @@
                             <div class="mt-1">
                                 <input type="text" id="tel_number" name="tel_number" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2">
                             </div>
+                            @error('tel_number')
+                                <div class=" text-sm text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         {{-- reservation date --}}
                         <div class="sm:col-span-6">
@@ -49,6 +61,9 @@
                             <div class="mt-1">
                                 <input type="datetime-local" id="res_date" name="res_date" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2">
                             </div>
+                            @error('res_date')
+                                <div class=" text-sm text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         {{-- guest number --}}
                         <div sm:col-span-6 pt-5>
@@ -56,6 +71,9 @@
                             <div class="mt-1">
                                 <input type="number" min="0.00" max="10000.00" step="0.01" id="guest_number" name="guest_number" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2">
                             </div>
+                            @error('guest_number')
+                                <div class=" text-sm text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         {{-- table id --}}
                         <div sm:col-span-6 pt-5>
@@ -67,6 +85,9 @@
                                     @endforeach
                                 </select>
                             </div>
+                            @error('table_id')
+                                <div class=" text-sm text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class=" mt-6 p-4">
